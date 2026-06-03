@@ -1,10 +1,10 @@
-# ✏️ Generative AI — Synthetic Handwritten Digits (VAE)
+# Generative AI — Synthetic Handwritten Digits (VAE)
 
 A generative deep learning project that trains a **Variational Autoencoder (VAE)** on the MNIST dataset to learn a structured latent space of handwritten digits and synthesize novel, realistic digit images from random noise.
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 | | |
 |---|---|
@@ -17,7 +17,7 @@ A generative deep learning project that trains a **Variational Autoencoder (VAE)
 
 ---
 
-## 🧠 Model Architecture
+## Model Architecture
 
 ```
 Input Image (28×28 = 784)
@@ -43,7 +43,7 @@ Input Image (28×28 = 784)
 
 ---
 
-## 📉 Loss Function
+## Loss Function
 
 The VAE is trained with a composite loss consisting of two mathematically principled terms:
 
@@ -63,11 +63,11 @@ KLD = -0.5 · Σ (1 + log(σ²) - μ² - σ²)
 ```
 Forces every image's latent distribution toward the standard normal N(0,1), ensuring the latent space is smooth, structured, and interpolable — not a disordered set of disconnected clusters.
 
-> ⚠️ Both equations are mathematically proven probability laws and are **not hyperparameters to be tuned**.
+ Both equations are mathematically proven probability laws and are **not hyperparameters to be tuned**.
 
 ---
 
-## 🔧 Training
+## Training
 
 ### Preprocessing
 - Images converted to tensors and normalized to [0, 1] via `transforms.ToTensor()`
@@ -78,7 +78,7 @@ Forces every image's latent distribution toward the standard normal N(0,1), ensu
 | Optimizer | Epochs | Learning Rate | Notes |
 |---|---|---|---|
 | Vanilla GD | 10 | 1e-3 | Manual `param.data -= lr * param.grad` |
-| **Adam** ✅ | 10 | 1e-3 | Faster convergence, lower loss |
+| **Adam** | 10 | 1e-3 | Faster convergence, lower loss |
 
 Adam was selected as the final optimizer due to adaptive moment estimation providing more stable and efficient weight updates on this task.
 
@@ -88,7 +88,7 @@ Adam was selected as the final optimizer due to adaptive moment estimation provi
 
 ---
 
-## 🎨 Generation
+## Generation
 
 After training, **64 new digits** are synthesized by:
 
@@ -100,7 +100,7 @@ This demonstrates the model has learned a continuous, generative distribution ov
 
 ---
 
-## 🛠️ Installation & Usage
+## Installation & Usage
 
 ```bash
 # Clone the repo
@@ -113,12 +113,11 @@ pip install torch torchvision matplotlib
 # Launch the notebook
 jupyter notebook GenAI_Digits.ipynb
 ```
-
-> **Note**: A CUDA-capable GPU (e.g. T4) is recommended for faster training. The notebook auto-detects and moves the model to `cuda` if available.
+**Note**: A CUDA-capable GPU (e.g. T4) is recommended for faster training. The notebook auto-detects and moves the model to `cuda` if available.
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 vae-mnist-digits/
@@ -130,7 +129,7 @@ vae-mnist-digits/
 
 ---
 
-## 🔍 Key Takeaways
+## Key Takeaways
 
 - The reparameterization trick is what makes VAEs trainable end-to-end — it moves randomness outside the computational graph
 - BCE alone produces sharp but poorly organized latent spaces; KLD regularization is what enables smooth interpolation and coherent generation
